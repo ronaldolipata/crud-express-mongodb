@@ -18,7 +18,7 @@ mongoose.connection.on('open', () => {
   console.log('Connected');
 });
 
-app.get('/', async (req, res) => {
+app.get('/users', async (req, res) => {
   // Use limit and offset queries if exists. Otherwise, use default values.
   const limit = req.query.limit || 3;
   const offset = req.query.offset || 0;
