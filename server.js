@@ -3,6 +3,7 @@ import process from 'node:process';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
+import { userInfo } from 'node:os';
 
 const app = express();
 // Use PORT from .env file if exists. Otherwise, use PORT 3000
@@ -29,6 +30,23 @@ app.get('/users', async (req, res) => {
       { $skip: parseInt(offset) },
     ]);
     res.status(200).send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post('/users', async (req, res) => {
+  const { firstName, lastName, email, password } = req.body;
+
+  // Create new User from request body
+  try {
+    const newUser = await User.create({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    res.status(201).send(newUser);
   } catch (error) {
     console.log(error);
   }
