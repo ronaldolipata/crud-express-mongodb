@@ -30,7 +30,7 @@ app.get('/users', async (req, res) => {
     ]);
     res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 });
 
@@ -47,7 +47,7 @@ app.post('/users', async (req, res) => {
     });
     res.status(201).send(newUser);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 });
 
